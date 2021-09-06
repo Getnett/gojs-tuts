@@ -1,26 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import { familyTreeData } from "./api/data";
+import { NodeData } from "./api/types";
+import DiagramWrapper from "./components/DiagramWrapper";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
+const App: React.FC = () => {
+    const [nodeTreeData, setNodeTreeData] = useState<NodeData[]>([]);
+    useEffect(() => {
+        // This can be simulated data from remote resource
+        setNodeTreeData(familyTreeData);
+    }, []);
+    return <DiagramWrapper nodeDataArray={nodeTreeData} />;
+};
 export default App;
